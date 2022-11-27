@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
-15
+ <meta charset="UTF-8">с
  <title>Виміри</title>
 </head>
 <body>
 <h3>Виміри</h3>
 {% for measurement in measurements %}
- <p>{{ measurement }}</p>
+ <p>{{ measurement.dateTime }}</p>
+ <p> temp{{ measurement.temperature.value }} humid {{measurement.humidity.value}} pressure {{measurement.pressure.value}}</p>
 {% endfor %}
 </body>
 </html>
