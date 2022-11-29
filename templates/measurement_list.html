@@ -1,14 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">с
- <title>Виміри</title>
+ <meta charset="UTF-8">
+ <title>Виміри значень з сенсорів</title>
+ <style>
+    ::-moz-selection { /* Code for Firefox */
+        color: white;
+        background: #1a7a81;
+    }
+    ::selection {
+        color: white;
+        background: #1a7a81;
+    }
+    #measur tr:hover {
+        background-color: #5EBEC4;
+        color: #ffffff;
+    }
+    body {
+        background-color: #FDF5DF; 
+        color:#204042;
+    }
+    h1 {
+        padding-top: 15px;
+        padding-bottom: 10px;
+        color:#3c3c3c;
+        text-align: center;
+        font-family: Verdana, Arial, sans-serif;
+        font-size: x-large;
+    }
+    #measur {
+        font-family: Verdana, Arial, sans-serif;
+        border-collapse: collapse;
+        width: 85%;
+        table-layout: fixed;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #ffffff;
+        text-align: center;
+    }
+    #measur td, #measur th {
+        padding: 8px;
+    }
+    #measur td {
+    border: 1px solid #5EBEC4;
+    }
+    #measur th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #F92C85;
+        color: #460d25;
+        text-align: center;
+    }
+    </style>
 </head>
 <body>
-<h3>Виміри</h3>
+<h1>Виміри значень з сенсорів</h1>
+<table id="measur">
+    <tr>
+        <th>Дата</th>
+        <th>Температура</th>
+        <th>Вологість</th>
+        <th>Тиск</th>
+    </tr>
 {% for measurement in measurements %}
- <p>{{ measurement.dateTime }}</p>
- <p> temp{{ measurement.temperature.value }} humid {{measurement.humidity.value}} pressure {{measurement.pressure.value}}</p>
+    <tr>
+        <td>{{measurement.dateTime}}</td>
+        <td>{{measurement.temperature.value}}</td>
+        <td>{{measurement.humidity.value}}</td>
+        <td>{{measurement.pressure.value}}</td>
+    </tr>
 {% endfor %}
+</table>
 </body>
 </html>
