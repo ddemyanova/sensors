@@ -66,9 +66,9 @@
 {% for measurement in measurements %}
     <tr>
         <td>{{measurement.dateTime}}</td>
-        <td>{{measurement.temperature.value}}</td>
-        <td>{{measurement.humidity.value}}</td>
-        <td>{{measurement.pressure.value}}</td>
+        <td>{{measurement.temperature}}</td>
+        <td>{{measurement.humidity}}</td>
+        <td>{{measurement.pressure}}</td>
     </tr>
 {% endfor %}
 </table>
