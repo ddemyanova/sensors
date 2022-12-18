@@ -2,10 +2,17 @@ import os
 from django.views import generic
 from django.conf import settings
 
+from rest_framework import viewsets
 from djangoapp.models import PeriodicMeasurements
+from djangoapp.serializers import PeriodicMeasurementsSerializer
 
 
-class MeasurementList(generic.ListView):
+class MeasurementListSet(viewsets.ModelViewSet):
+    queryset = PeriodicMeasurements.objects.all()
+    serializer_class = PeriodicMeasurementsSerializer
+
+
+class MeasurementListView(generic.ListView):
     model = PeriodicMeasurements
     context_object_name = 'measurements'
     template_name = 'measurement_list.html'
@@ -25,4 +32,4 @@ class MeasurementList(generic.ListView):
 
         except IOError:
             pass
-        return super(MeasurementList, self).get(request, *args, **kwargs)
+        return super(MeasurementListView, self).get(request, *args, **kwargs)

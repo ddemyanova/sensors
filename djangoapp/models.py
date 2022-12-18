@@ -4,8 +4,8 @@ from django.db import models
 
 class PeriodicMeasurements (models.Model):
     temperature = models.IntegerField()
-    humidity = models.DecimalField(decimal_places=2, max_digits=6)
-    pressure = models.DecimalField(decimal_places=2, max_digits=7)
+    humidity = models.DecimalField(decimal_places=1, max_digits=6)
+    pressure = models.DecimalField(decimal_places=1, max_digits=7)
     dateTime = models.DateTimeField(auto_now_add=True)
 
 
