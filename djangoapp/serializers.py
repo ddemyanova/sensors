@@ -1,10 +1,22 @@
 
 from rest_framework import serializers
 
-from djangoapp.models import PeriodicMeasurements
+from djangoapp.models import Temperature, Humidity, Pressure
 
 
-class PeriodicMeasurementsSerializer(serializers.ModelSerializer):
+class TemperatureSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PeriodicMeasurements
-        fields = ('temperature', 'humidity', 'pressure', 'dateTime')
+        model = Temperature
+        fields = ('temperature', 'dateTime')
+
+
+class HumiditySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Humidity
+        fields = ('humidity', 'dateTime')
+
+
+class PressureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pressure
+        fields = ('pressure', 'dateTime')

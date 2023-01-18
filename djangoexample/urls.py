@@ -1,7 +1,8 @@
 from django.urls import path, include
-from djangoapp.views import MeasurementListView
+from djangoapp.views import MeasuresListView
 
 urlpatterns = [
     path('api/', include('djangoapp.urls')),
-    path('measurements/', MeasurementListView.as_view(),  name='measurement_list'),
+    path('measurements/', MeasuresListView.as_view(),  name='measurement_list'),
+
 ]
