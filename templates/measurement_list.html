@@ -56,19 +56,54 @@
 </head>
 <body>
 <h1>Виміри значень з сенсорів</h1>
+{% comment %} <table id="measur">
+    <tr>
+        <th>Дата</th>
+        <th>Температура</th>
+    </tr>
+{% for measurement in temperature %}
+    <tr>
+        <td>{{measurement.dateTime}}</td>
+        <td>{{measurement.temperature}}</td>
+    </tr>
+{% endfor %}
+</table> {% endcomment %}
+<table id="measur">
+    <tr>
+        <th>Дата</th>
+        <th>Вологa</th>
+    </tr>
+    {% for measurement in humidity %}
+    <tr>
+        <td>{{measurement.dateTime}}</td>
+        <td>{{measurement.humidity}}</td>
+      
+    </tr>
+{% endfor %}
+</table>
+
+<table id="measur">
+    <tr>
+        <th>Дата</th>
+        <th>Тиск</th>
+    </tr>
+{% for measurement in pressure %}
+    <tr>
+        <td>{{measurement.dateTime}}</td>
+        <td>{{measurement.pressure}}</td>
+    </tr>
+{% endfor %}
+</table>
+
 <table id="measur">
     <tr>
         <th>Дата</th>
         <th>Температура</th>
-        <th>Вологість</th>
-        <th>Тиск</th>
     </tr>
-{% for measurement in measurements %}
+{% for measurement in temperature %}
     <tr>
         <td>{{measurement.dateTime}}</td>
         <td>{{measurement.temperature}}</td>
-        <td>{{measurement.humidity}}</td>
-        <td>{{measurement.pressure}}</td>
     </tr>
 {% endfor %}
 </table>

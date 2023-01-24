@@ -2,10 +2,18 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class PeriodicMeasurements (models.Model):
+class Temperature (models.Model):
     temperature = models.IntegerField()
-    humidity = models.DecimalField(decimal_places=2, max_digits=6)
-    pressure = models.DecimalField(decimal_places=2, max_digits=7)
+    dateTime = models.DateTimeField(auto_now_add=True)
+
+
+class Humidity (models.Model):
+    humidity = models.DecimalField(decimal_places=1, max_digits=6)
+    dateTime = models.DateTimeField(auto_now_add=True)
+
+
+class Pressure (models.Model):
+    pressure = models.DecimalField(decimal_places=1, max_digits=7)
     dateTime = models.DateTimeField(auto_now_add=True)
 
 
