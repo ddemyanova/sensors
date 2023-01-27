@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from djangoapp.models import Temperature, Humidity, Pressure
+
+admin.site.register(Temperature)
+admin.site.register(Humidity)
+admin.site.register(Pressure)
