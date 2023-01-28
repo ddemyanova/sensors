@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-j%1h4kq5)nfsw-@6!k&nbhuwxh4oiz=_9hmp07)cdwg0xo$evq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['9a78-31-61-230-66.eu.ngrok.io','127.0.0.1']
 
 
 # Application definition
@@ -79,8 +79,14 @@ WSGI_APPLICATION = 'djangoexample.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            "host":"mongodb+srv://mongo:mongo@cluster0.te9nkxt.mongodb.net/?retryWrites=true&w=majority",
+            "name":"sensors_db",
+            "authMechanism":"SCRAM-SHA-1"
+        },
+        'HOST': '127.0.0.1',
+        'PORT': 8000,
     }
 }
 
