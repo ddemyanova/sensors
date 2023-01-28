@@ -36,18 +36,18 @@ class MeasuresListView(generic.ListView):
         context = super(MeasuresListView, self).get_context_data()
         try:
             humidity_file = self.openFile('humidity_test')
-            for hum in humidity_file:
-                Humidity.objects.get_or_create(humidity=hum)
+            # for hum in humidity_file:
+            #   Humidity.objects.get_or_create(humidity=hum)
             context['humidity'] = Humidity.objects.all()
 
             pressure_file = self.openFile('pressure_test')
-            for pr in pressure_file:
-                Pressure.objects.get_or_create(pressure=pr)
+            # for pr in pressure_file:
+            #     Pressure.objects.get_or_create(pressure=pr)
             context['pressure'] = Pressure.objects.all()
 
             temperature_file = self.openFile('temperature_test')
-            for temp in temperature_file:
-                Temperature.objects.get_or_create(temperature=temp)
+            # for temp in temperature_file:
+            #     Temperature.objects.get_or_create(temperature=temp)
             context['temperature'] = Temperature.objects.all()
             return context
         except IOError:
