@@ -56,18 +56,6 @@
 </head>
 <body>
 <h1>Виміри значень з сенсорів</h1>
-{% comment %} <table id="measur">
-    <tr>
-        <th>Дата</th>
-        <th>Температура</th>
-    </tr>
-{% for measurement in temperature %}
-    <tr>
-        <td>{{measurement.dateTime}}</td>
-        <td>{{measurement.temperature}}</td>
-    </tr>
-{% endfor %}
-</table> {% endcomment %}
 <table id="measur">
     <tr>
         <th>Дата</th>
@@ -107,5 +95,6 @@
     </tr>
 {% endfor %}
 </table>
+{{analytics|safe}}
 </body>
 </html>
