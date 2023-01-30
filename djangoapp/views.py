@@ -105,7 +105,9 @@ class MeasuresListView(generic.ListView):
 @api_view()
 def analytics_view(request):
     analytics = Analytics()
-    prediction, rmse = analytics.getTestDataTemp()
+    prediction_temperature, rmse_temperature = analytics.getTestDataTemp()
+    prediction_humidity, rmse_humidity = analytics.getTestDataHum()
+    prediction_pressure, rmse_pressure = analytics.getTestDataPr()
     contextDict={
         'humidity': analytics.get_humidityHtml,
         'pressure': analytics.get_pressureHtml,
@@ -119,8 +121,17 @@ def analytics_view(request):
         'pressureLineGraph': analytics.get_pressureLineGraph,
         'humidityBarGraph': analytics.get_humidityBarGraph,
         'temperatureBarGraph': analytics.get_temperatureBarGraph,
+        'correlationTemperaturePressureLineGraph': analytics.get_correlationTempPrLineGraph,
+        'correlationHumidityTemperatureLineGraph': analytics.get_correlationHumTempLineGraph,
+        'correlationPressureHumidityLineGraph': analytics.get_correlationPrHumLineGraph,
+        'humidity_description': analytics.humiditySeries.describe(),
+        'pressure_description': analytics.pressureSeries.describe(),
         'temperature_description': analytics.temperatureSeries.describe(),
-        'prediction': prediction,
-        'rmse': rmse
+        'prediction_temperature': prediction_temperature,
+        'prediction_humidity': prediction_humidity,
+        'prediction_pressure': prediction_pressure,
+        'rmse_temperature': rmse_temperature,
+        'rmse_humidity': rmse_humidity,
+        'rmse_pressure': rmse_pressure
     }
     return render(request, 'analytics.html', contextDict)

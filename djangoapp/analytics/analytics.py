@@ -22,7 +22,7 @@ def get_graph():
     return graph
 
 
-def get_chart(key1, key2, chart_type, data):
+def get_chart(key1, key2, chart_type, data, color='gray'):
     pyplot.switch_backend('AGG')
     fig = pyplot.figure(figsize=(12, 6))
     pyplot.xticks(rotation=90)
@@ -30,11 +30,15 @@ def get_chart(key1, key2, chart_type, data):
     d = data.groupby(key1, as_index=False)[key2].agg('mean')
 
     if chart_type == 'bar_graph':
-        pyplot.bar(d[key1], d[key2])
+        pyplot.bar(d[key1], d[key2], color=color)
+        pyplot.xlabel(key1)
+        pyplot.ylabel(key2)
     elif chart_type == 'pie_chart':
         pyplot.pie(data=d, x=key2, labels=d[key1])
     elif chart_type == 'line_graph':
-        pyplot.plot(d[key1], d[key2], color='gray', marker='o', linestyle='dashed')
+        pyplot.plot(d[key1], d[key2], color=color, marker='o', linestyle='dashed')
+        pyplot.xlabel(key1)
+        pyplot.ylabel(key2)
     else:
         print("Apparently...chart_type not identified")
     pyplot.tight_layout()
@@ -44,13 +48,22 @@ def get_chart(key1, key2, chart_type, data):
 class Analytics:
 
     def get_temperatureBarGraph(self):
-        return get_chart('date', 'temperature', 'bar_graph', self.temperatureSeries)
+        return get_chart('date', 'temperature', 'bar_graph', self.temperatureSeries, '#1a7a81')
 
     def get_humidityBarGraph(self):
-        return get_chart('date', 'humidity', 'bar_graph', self.humiditySeries)
+        return get_chart('date', 'humidity', 'bar_graph', self.humiditySeries, '#5EBEC4')
 
     def get_pressureLineGraph(self):
-        return get_chart('date', 'pressure', 'line_graph', self.pressureSeries)
+        return get_chart('date', 'pressure', 'line_graph', self.pressureSeries, '#460d25')
+
+    def get_correlationTempPrLineGraph(self):
+        return get_chart('temperature', 'pressure', 'line_graph', self.getCorellationFrameTemp(), '#F92C85')
+
+    def get_correlationHumTempLineGraph(self):
+        return get_chart('humidity', 'temperature', 'line_graph', self.getCorellationFrameHum(), '#5EBEC4')
+
+    def get_correlationPrHumLineGraph(self):
+        return get_chart('pressure', 'humidity', 'line_graph', self.getCorellationFramePr(), '#460d25')
 
     def get_humidityHtml(self):
         x1 = self.humidityMean.groupby('date', as_index=False)['humidity'].mean()
@@ -119,9 +132,8 @@ class Analytics:
                 'temperature': pd.Series(tempVal)
             })
 
-
     def getTestDataTemp(self):
-        temp = self.getCorellationFrame()
+        temp = self.getCorellationFrameTemp()
         Y = temp['temperature']
         X = temp.drop('temperature', axis=1)
         print(X)
@@ -132,14 +144,13 @@ class Analytics:
         skl_pipeline = Pipeline(
             steps=[('normalizer', lnorm_transf), ('regression_estimator', LinearRegression())])
         skl_pipeline.fit(X_train.loc[:, ['date', 'pressure']].values, y_train)
-        y_pred = skl_pipeline.predict(
+        y_pred_temp = skl_pipeline.predict(
             X_test.loc[:, ['date', 'pressure']].values)
-        rmse = np.mean((np.round(y_pred) - y_test.values)**2)**0.5
-        print('Середнєквадратичне відхилення: {}'.format(rmse))
-        return y_pred, rmse
+        rmse_temp = np.mean((np.round(y_pred_temp) - y_test.values)**2)**0.5
+        print('Середнєквадратичне відхилення: {}'.format(rmse_temp))
+        return y_pred_temp, rmse_temp
 
-
-    def getCorellationFrame(self):
+    def getCorellationFrameTemp(self):
         temperatureObj = []
         pressureObj = []
         base_time = None
@@ -189,6 +200,149 @@ class Analytics:
                 'date': dateList,
                 'pressure': pressList,
                 'temperature': tempList
+            }
+        )
+
+    def getTestDataHum(self):
+        hum = self.getCorellationFrameHum()
+        Y = hum['humidity']
+        X = hum.drop('humidity', axis=1)
+        print(X)
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, Y, test_size=0.25, random_state=143)
+
+        lnorm_transf = LNormalizer()
+        skl_pipeline = Pipeline(
+            steps=[('normalizer', lnorm_transf), ('regression_estimator', LinearRegression())])
+        skl_pipeline.fit(X_train.loc[:, ['date', 'temperature']].values, y_train)
+        y_pred_hum = skl_pipeline.predict(
+            X_test.loc[:, ['date', 'temperature']].values)
+        rmse_hum = np.mean((np.round(y_pred_hum) - y_test.values)**2)**0.5
+        print('Середнєквадратичне відхилення: {}'.format(rmse_hum))
+        return y_pred_hum, rmse_hum
+
+    def getCorellationFrameHum(self):
+        humidityObj = []
+        temperatureObj = []
+        base_time = None
+        base_time_temp = None
+
+        for hum in Humidity.objects.all():
+            time = hum.dateTime
+            newTime = datetime(time.year, time.month,
+                               time.day, time.hour, time.minute, time.second, 0)
+            if base_time is None:
+                base_time = datetime(time.year, time.month,
+                                     time.day-1, 0, 0, 0, 0)
+            timedelta = pd.Timedelta(newTime - base_time).total_seconds()//60
+            humidityObj.append(CorellationModel(
+                float(hum.humidity), int(timedelta)))
+
+        for temp in Temperature.objects.all():
+            time = temp.dateTime
+            newTime = datetime(time.year, time.month,
+                               time.day, time.hour, time.minute, time.second, 0)
+            if base_time_temp is None:
+                base_time_temp = datetime(
+                    time.year, time.month, time.day-1, 0, 0, 0, 0)
+            timedelta = pd.Timedelta(
+                newTime - base_time_temp).total_seconds()//60
+            temperatureObj.append(CorellationModel(
+                float(temp.temperature), int(timedelta)))
+
+        humList = []
+        tempList = []
+        dateList = []
+        for te in temperatureObj:
+            if te.time in dateList:
+                continue
+            for hum in humidityObj:
+                if (te.time == hum.time):
+                    humList.append(hum.value)
+                    tempList.append(te.value)
+                    dateList.append(te.time)
+                    humidityObj.remove(hum)
+                    break
+        print(humList)
+        print(tempList)
+        print(dateList)
+        return pd.DataFrame(
+            {
+                'date': dateList,
+                'temperature': tempList,
+                'humidity': humList
+            }
+        )
+    
+    def getTestDataPr(self):
+        pr = self.getCorellationFramePr()
+        Y = pr['pressure']
+        X = pr.drop('pressure', axis=1)
+        print(X)
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, Y, test_size=0.25, random_state=143)
+
+        lnorm_transf = LNormalizer()
+        skl_pipeline = Pipeline(
+            steps=[('normalizer', lnorm_transf), ('regression_estimator', LinearRegression())])
+        skl_pipeline.fit(X_train.loc[:, ['date', 'humidity']].values, y_train)
+        y_pred_pr = skl_pipeline.predict(
+            X_test.loc[:, ['date', 'humidity']].values)
+        rmse_pr = np.mean((np.round(y_pred_pr) - y_test.values)**2)**0.5
+        print('Середнєквадратичне відхилення: {}'.format(rmse_pr))
+        return y_pred_pr, rmse_pr
+
+    def getCorellationFramePr(self):
+        pressureObj = []
+        humidityObj = []
+        base_time = None
+        base_time_hum = None
+
+        for pr in Pressure.objects.all():
+            time = pr.dateTime
+            newTime = datetime(time.year, time.month,
+                               time.day, time.hour, time.minute, time.second, 0)
+            if base_time is None:
+                base_time = datetime(time.year, time.month,
+                                     time.day-1, 0, 0, 0, 0)
+            timedelta = pd.Timedelta(newTime - base_time).total_seconds()//60
+            pressureObj.append(CorellationModel(
+                float(pr.pressure), int(timedelta)))
+
+        for hum in Humidity.objects.all():
+            time = hum.dateTime
+            newTime = datetime(time.year, time.month,
+                               time.day, time.hour, time.minute, time.second, 0)
+            if base_time_hum is None:
+                base_time_hum = datetime(
+                    time.year, time.month, time.day-1, 0, 0, 0, 0)
+            timedelta = pd.Timedelta(
+                newTime - base_time_hum).total_seconds()//60
+            humidityObj.append(CorellationModel(
+                float(hum.humidity), int(timedelta)))
+
+        prList = []
+        humList = []
+        dateList = []
+        
+        for hu in humidityObj:
+            if hu.time in dateList:
+                continue
+            for pr in pressureObj:
+                if (hu.time == pr.time):
+                    prList.append(pr.value)
+                    humList.append(hu.value)
+                    dateList.append(hu.time)
+                    pressureObj.remove(pr)
+                    break
+        print(prList)
+        print(humList)
+        print(dateList)
+        return pd.DataFrame(
+            {
+                'date': dateList,
+                'humidity': humList,
+                'pressure': prList
             }
         )
 

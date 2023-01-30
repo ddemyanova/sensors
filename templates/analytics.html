@@ -1,30 +1,8 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <style>
-            .flex-container {
-  display: flex;
-
-}
-
-.flex-container > div {
-
-  margin: 10px;
-  padding: 20px;
-  font-size: 30px;
-}
-
-
-           div {
-                padding-top: 15px;
-           }
-           h4{
-                padding-top: 15px;
-           }
-           p{
-               alignment: left;
-           }
-        </style>
+        {% load static %}  
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
         <title>Аналітика за вимірами</title>
     </head>
     <body>
@@ -32,7 +10,7 @@
             <h2 class="text-center", style="font-size: 20px">Аналітика за вимірами</h2>
             <div>
                 <h3><em>Середня вологість за днями</em></h3>
-                    <div class="flex-container">
+                    <div class="flex-container" id="measur">
                         {{humidity|safe}}
                 <p>min: {{ min_humidity.humidity }}</p>
                 <p>max: {{ max_humidity.humidity }}</p>
@@ -41,7 +19,7 @@
             </div>
             <div>
                 <h3><em> Середній тиск за днями</em></h3>
-                    <div class="flex-container">
+                    <div class="flex-container" id="measur">
                         {{pressure|safe}}
                  <p>min: {{ min_pressure.pressure }}</p>
                 <p>max: {{ max_pressure.pressure }}</p>
@@ -54,7 +32,7 @@
 
                 </div>
 
-                <div class="flex-container">
+                <div class="flex-container" id="measur">
                      {{temperature|safe}}
                     <p>min: {{ min_temperature.temperature }}</p>
                 <p>max: {{ max_temperature.temperature }}</p>
@@ -70,13 +48,26 @@
                <img src="data:image/png;base64, {{humidityBarGraph|safe}}" alt="" id="img"  class="rounded float-center">
                 <h4><em>Графік тиску</em></h4>
                <img src="data:image/png;base64, {{pressureLineGraph|safe}}" alt="" id="img"  class="rounded float-center">
+                <h4><em>Графік кореляції температури та тиску</em></h4>
+               <img src="data:image/png;base64, {{correlationTemperaturePressureLineGraph|safe}}" alt="" id="img"  class="rounded float-center">
+                <h4><em>Графік кореляції вологості та температури</em></h4>
+               <img src="data:image/png;base64, {{correlationHumidityTemperatureLineGraph|safe}}" alt="" id="img"  class="rounded float-center">
+                <h4><em>Графік кореляції тиску та вологості</em></h4>
+               <img src="data:image/png;base64, {{correlationPressureHumidityLineGraph|safe}}" alt="" id="img"  class="rounded float-center">
             </div>
             <div style="padding-bottom: 30px">
                 <h4><em>Передбачені значення температури</em></h4>
-                <p>{{prediction}}</p>
+                <p>{{prediction_temperature}}</p>
                 <h5><em>Середньоквадратичне відхилення:</em></h5>
-                 <p>{{rmse}}</p>
-
+                <p>{{rmse_temperature}}</p>
+                <h4><em>Передбачені значення вологості</em></h4>
+                <p>{{prediction_humidity}}</p>
+                <h5><em>Середньоквадратичне відхилення:</em></h5>
+                <p>{{rmse_humidity}}</p>
+                <h4><em>Передбачені значення тиску</em></h4>
+                <p>{{prediction_pressure}}</p>
+                <h5><em>Середньоквадратичне відхилення:</em></h5>
+                <p>{{rmse_pressure}}</p>
             </div>
         </div>
 
