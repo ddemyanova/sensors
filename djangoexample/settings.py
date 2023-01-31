@@ -79,8 +79,14 @@ WSGI_APPLICATION = 'djangoexample.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            "host":"mongodb+srv://marykvitka:marykvitka123@cluster0.sgqnr87.mongodb.net/?retryWrites=true&w=majority",
+            "name":"sensorsDB",
+            "authMechanism":"SCRAM-SHA-1"
+        },
+        'HOST': '127.0.0.1',
+        'PORT': 8000,
     }
 }
 
