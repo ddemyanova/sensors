@@ -1,22 +1,35 @@
 # sensors
 
+Monitoring system for collecting and analyzing data from sensors 
+
 Check python version
 pip -V
 pip 22.3.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)
 
 Install needed libraries
-with command 
-> pip install 
 
-example 
+> python -m pip install Django
+
 > pip install djangorestframework
 
+> pip install asgiref
 
-with comand 
-> pip install 
+> pip install dnspython
 
-example 
-> pip install djangorestframework
+> pip install pytz
+
+> pip install sqlparse
+
+> pip install -U scikit-learn
+
+> pip install pandas
+
+> pip install matplotlib
+
+> pip install numpy
+
+-------
+Lib versions
 
 - asgiref==3.5.2
 - Django==4.1.3
@@ -24,7 +37,8 @@ example
 - dnspython==2.3.0
 - pytz==2022.7
 - sqlparse==0.2.4
-
+- djongo==1.3.6
+- pymongo==4.3.3
 
 **Run project**
 1. create environment "env" [ source env/bin/activate ]
