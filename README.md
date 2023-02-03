@@ -1,6 +1,6 @@
 # sensors
 
-Monitoring system for aggregation and analysis data from sensors 
+Monitoring system for collecting and analyzing data from sensors 
 
 Check python version
 pip -V
