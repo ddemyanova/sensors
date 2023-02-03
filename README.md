@@ -5,18 +5,29 @@ pip -V
 pip 22.3.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)
 
 Install needed libraries
-with command 
-> pip install 
 
-example 
+> python -m pip install Django
+
 > pip install djangorestframework
 
+> pip install asgiref
 
-with comand 
-> pip install 
+> pip install dnspython
 
-example 
-> pip install djangorestframework
+> pip install pytz
+
+> pip install sqlparse
+
+> pip install -U scikit-learn
+
+> pip install pandas
+
+> pip install matplotlib
+
+> pip install numpy
+
+-------
+Lib versions
 
 - asgiref==3.5.2
 - Django==4.1.3
