@@ -85,8 +85,6 @@ DATABASES = {
             "name":"sensors_db",
             "authMechanism":"SCRAM-SHA-1"
         },
-        'HOST': '127.0.0.1',
-        'PORT': 8000,
     }
 }
 
