@@ -6,10 +6,10 @@ pip 22.3.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)
 
 Run project
 1. create environment "env" [ source env/bin/activate ]
-1. run env [ source env/bin/activate ]
-2. run server python 
+2. run env [ source env/bin/activate ]
+3. run server python 
 [ cd sensors ]
-[ python manage.py runserver ]
-3. go to http://127.0.0.1:8000/measurements/
-4. to open admin panel - go to http://127.0.0.1:8000/admin/
+[ python manage.py runserver ] or [ python3 manage.py runserver ] 
+4. go to http://127.0.0.1:8000/measurements/
+5. to open admin panel - go to http://127.0.0.1:8000/admin/
 
