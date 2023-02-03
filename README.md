@@ -12,6 +12,12 @@ example
 > pip install djangorestframework
 
 
+with comand 
+> pip install 
+
+example 
+> pip install djangorestframework
+
 - asgiref==3.5.2
 - Django==4.1.3
 - djangorestframework==3.14.0
