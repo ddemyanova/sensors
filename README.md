@@ -14,5 +14,6 @@ example
 Run project
 1. create environment "env" [ source virtualenv env ]
 2. run env [ source env/scripts/activate ]
-3. run commands to database [ python utils.py ] or [ python3 utils.py ]
+3. switch to project directory [ cd sensors ]
+4. run commands to database [ python utils.py ] or [ python3 utils.py ]
 
