@@ -9,5 +9,6 @@ Run project
 2. run server python 
 [ cd sensors ]
  [ python manage.py runserver ]
-go to http://127.0.0.1:8000/measurements/
+3. go to http://127.0.0.1:8000/measurements/
+4. to open admin panel - go to http://127.0.0.1:8000/admin/
 
