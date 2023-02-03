@@ -1,11 +1,39 @@
-**You need additional installation of libraries:**
+# sensors
 
-- djongo==1.3.6
-- pymongo==4.3.3
+Check python version
+pip -V
+pip 22.3.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)
 
-To run project, install mongo Compass, enter url there:
-> mongodb+srv://<username>:<password>@cluster0.te9nkxt.mongodb.net/?retryWrites=true&w=majority
+Install needed libraries
+with command 
+> pip install 
 
-Add your IP address on whitelist on https://cloud.mongodb.com/v2/63d5805a7c7e342f3adac3d6#/clusters/detail/Cluster0
+example 
+> pip install djangorestframework
 
-And run project as usual
+
+with comand 
+> pip install 
+
+example 
+> pip install djangorestframework
+
+- asgiref==3.5.2
+- Django==4.1.3
+- djangorestframework==3.14.0
+- dnspython==2.3.0
+- pytz==2022.7
+- sqlparse==0.2.4
+
+
+**Run project**
+1. create environment "env" [ source env/bin/activate ]
+2. run env [ source env/bin/activate ]
+3. run server python 
+[ cd sensors ]
+[ python manage.py runserver ] or [ python3 manage.py runserver ] 
+4. go to http://127.0.0.1:8000/measurements/
+5. to open admin panel - go to http://127.0.0.1:8000/admin/
+6. to run tests [ python manage.py test djangoapp/tests ]
+7. run commands to database [ python utils.py ] or [ python3 utils.py ]
+
