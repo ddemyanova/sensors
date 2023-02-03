@@ -1,5 +1,7 @@
 # sensors
 
+Monitoring system for aggregation and analysis data from sensors 
+
 Check python version
 pip -V
 pip 22.3.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)
