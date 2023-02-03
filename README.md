@@ -4,3 +4,5 @@ Please install this packages to run the code on this branch:
 > pip install pandas
 
 > pip install matplotlib
+
+> pip install numpy
