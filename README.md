@@ -49,10 +49,9 @@ To run on virtualbox you need to share your local server with ngrok after you ru
 3. run server
 > ngrok http 8000
 
-4. add to file settings.py AllowedHosts new host from ngrok 
-ALLOWED_HOSTS = [‘…host…’]
+4. add to file settings.py AllowedHosts new host from ngrok => ALLOWED_HOSTS = [‘…host…’]
 
-5. change urls in all .py files on raspberry os
+5. change urls in all .py files on raspberry os =>
 url = ‘…host…’;
 
 -------
