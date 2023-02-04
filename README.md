@@ -34,7 +34,8 @@ or
 > python3 manage.py runserver 
 7. go to http://127.0.0.1:8000
 8. to open admin panel - go to http://127.0.0.1:8000/admin/
-9. to run tests [ python manage.py test djangoapp/tests ]
+9. to run tests 
+> python manage.py test djangoapp/tests
 
 -------
 
