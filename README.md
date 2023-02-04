@@ -22,7 +22,8 @@ pip 22.3.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)
  
 > virtualenv \<name>
 4. install libs (mentioned in Libs block)
-5. run env 
+5. runnning env:
+
 go to folder with env and run
 > source bin/activate 
 6. run server python 
