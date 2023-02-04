@@ -30,7 +30,9 @@ go to folder with env and run
 > cd sensors 
 
 > python manage.py runserver 
-\or 
+
+or 
+
 > python3 manage.py runserver 
 7. go to http://127.0.0.1:8000
 8. to open admin panel - go to http://127.0.0.1:8000/admin/
