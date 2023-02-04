@@ -14,7 +14,7 @@ Check python version
 
 pip 22.3.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)
 
-2. Instal virtual env
+2. Install virtual env
 
 > pip install virtualenv
 
