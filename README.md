@@ -2,9 +2,42 @@
 
 This project is the monitoring system for collecting and analyzing data from sensors 
 
+
+**Run project**
+
+1. Install python
+
+> sudo apt-get install python-pip
+
 Check python version
-pip -V
+> pip -V
+
 pip 22.3.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)
+
+2. Install virtual env
+
+> pip install virtualenv
+
+3. Create virtual env
+ 
+> virtualenv /<name>
+4. install libs (mentioned in Libs block)
+5. run env 
+go to folder with env and run
+> source bin/activate 
+6. run server python 
+> cd sensors 
+
+> python manage.py runserver 
+or 
+> python3 manage.py runserver 
+7. go to http://127.0.0.1:8000
+8. to open admin panel - go to http://127.0.0.1:8000/admin/
+9. to run tests [ python manage.py test djangoapp/tests ]
+
+-------
+
+**LIBS**
 
 Install needed libraries
 
@@ -28,8 +61,8 @@ Install needed libraries
 
 > pip install numpy
 
--------
-Lib versions
+----
+Libs versions
 
 - asgiref==3.5.2
 - Django==4.1.3
@@ -43,13 +76,5 @@ Lib versions
 - matplotlib==3.6.3
 
 
-**Run project**
-1. create environment "env" [ source env/bin/activate ]
-2. run env [ source env/bin/activate ]
-3. run server python 
-[ cd sensors ]
-[ python manage.py runserver ] or [ python3 manage.py runserver ] 
-4. go to http://127.0.0.1:8000/measurements/
-5. to open admin panel - go to http://127.0.0.1:8000/admin/
-6. to run tests [ python manage.py test djangoapp/tests ]
+
 
