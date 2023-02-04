@@ -38,6 +38,23 @@ or
 9. to run tests 
 > python manage.py test djangoapp/tests
 
+
+To run on virtualbox you need to share your local server with ngrok after you run a local server.
+
+1. download ngrok from https://dashboard.ngrok.com/get-started/setup
+
+2. connect account 
+> ngrok config add-authtoken 2IrBFk2X8HyHxYal9G94zzXtWqI_2yVF1hmoV5qfARbShAGd9
+
+3. run server
+> ngrok http 8000
+
+4. add to file settings.py AllowedHosts new host from ngrok 
+ALLOWED_HOSTS = [‘…host…’]
+
+5. change urls in all .py files on raspberry os
+url = ‘…host…’;
+
 -------
 
 **LIBS**
