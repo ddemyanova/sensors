@@ -1,6 +1,6 @@
 # sensors
 
-Monitoring system for collecting and analyzing data from sensors 
+This project is the monitoring system for collecting and analyzing data from sensors 
 
 Check python version
 pip -V
@@ -38,6 +38,9 @@ Lib versions
 - pytz==2022.7
 - sqlparse==0.2.4
 - pandas==1.5.3
+- numpy==1.24.1
+- scikit-learn==1.2.1
+- matplotlib==3.6.3
 
 
 **Run project**
