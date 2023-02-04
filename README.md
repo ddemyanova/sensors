@@ -19,10 +19,11 @@ pip 22.3.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)
 
 3. Create virtual env
  
-> virtualenv <name>
+> virtualenv /<name>
 4. install libs (mentioned in Libs block)
 5. run env 
-> source env/bin/activate 
+go to folder with env and run
+> source bin/activate 
 6. run server python 
 > cd sensors 
 
