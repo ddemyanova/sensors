@@ -37,6 +37,7 @@ Lib versions
 - dnspython==2.3.0
 - pytz==2022.7
 - sqlparse==0.2.4
+- pandas==1.5.3
 
 
 **Run project**
