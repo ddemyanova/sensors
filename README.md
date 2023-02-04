@@ -11,6 +11,7 @@ This project is the monitoring system for collecting and analyzing data from sen
 
 Check python version
 > pip -V
+
 pip 22.3.1 from /usr/local/lib/python3.10/site-packages/pip (python 3.10)
 
 2. Instal virtual env
